@@ -1,11 +1,13 @@
+#algoritmo ainda não resolvido para quadrados de ordem maior que 3
+
 import random
 
 fitnessValue = 0
 order = 3
 answerOrder = order + 2
-popSize = 4
+popSize = 50
 indSize = order
-mutRate = 0.1
+mutRate = 0.1 
 bestFit = 0
 
 ## Quadrado Magico ##
@@ -87,7 +89,7 @@ def evalFit(square, answerOrder, numInput):
     return achievedGoal/((answerOrder-2)*2+2)
 
 def createInd(order):
-    avaliableNum = list(range(1, 10))
+    avaliableNum = list(range(1, ((order*order)+1)))
     ind = random.sample(avaliableNum, order*order)
     return ind
 
@@ -111,7 +113,7 @@ def checkComb(ind):
         if ind[i] in checkNum:
             newNum = ind[i]
             while newNum in checkNum:
-                newNum = (newNum % 9) + 1
+                newNum = (newNum % (order*order)) + 1
             ind[i] = newNum
         checkNum.add(ind[i])
     return ind
@@ -119,8 +121,9 @@ def checkComb(ind):
 def mutation(desc, popSize):
     for i in range(popSize):
          if random.random() < mutRate:
-            pos1, pos2 = random.sample(range(9), 2)
+            pos1, pos2, pos3, pos4 = random.sample(range(order*order), 4)
             desc[i][pos1], desc[i][pos2] = desc[i][pos2], desc[i][pos1]
+            ## desc[i][pos3], desc[i][pos4] = desc[i][pos4], desc[i][pos3]
 
 def sumAll(ind):
     magic_square = fill_magic_square(ind)
