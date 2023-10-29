@@ -1,4 +1,4 @@
-#algoritmo ainda não resolvido para quadrados de ordem maior que 3
+#algoritmo ainda não otimizado para quadrados de ordem maior que 3
 
 import random
 
